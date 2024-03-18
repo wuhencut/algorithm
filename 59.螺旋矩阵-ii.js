@@ -11,37 +11,52 @@
  */
 var generateMatrix = function (n) {
   let startX = 0,
-    startY = 0;
-  let count = 1;
-  let mid = n >> 1;
-  let loop = n >> 1;
-  let offset = 1;
-  let res = Array(n)
-    .fill(0)
-    .map(() => Array(n).fill(0));
+    startY = 0,
+    mid = n >> 1,
+    count = 1,
+    offset = 1,
+    loop = n >> 1;
 
+  const res = Array(n)
+    .fill(0)
+    .map((item) => Array(n).fill(0));
   while (loop) {
     loop--;
     let row = startX,
       col = startY;
-    for (; n - offset > col; col++) {
-      res[row][col] = count++;
-    }
-    for (; n - offset > row; row++) {
-      res[row][col] = count++;
-    }
-
-    for (; col > startY; col--) {
-      res[row][col] = count++;
+    // 横向 从左到右
+    while (n - col > offset) {
+      res[row][col] = count;
+      count++;
+      col++;
     }
 
-    for (; row > startX; row--) {
-      res[row][col] = count++;
+    // 纵向 从上到下
+    while (n - row > offset) {
+      res[row][col] = count;
+      row++;
+      count++;
     }
+
+    // 横向从右到左
+    while (col > startY) {
+      res[row][col] = count;
+      count++;
+      col--;
+    }
+
+    // 纵向，从下到上
+    while (row > startX) {
+      res[row][col] = count;
+      row--;
+      count++;
+    }
+
     startX++;
     startY++;
     offset++;
   }
+
   if (n % 2 === 1) {
     res[mid][mid] = count;
   }
