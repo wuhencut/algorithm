@@ -23,23 +23,19 @@ var getIntersectionNode = function (headA, headB) {
     curB = headB,
     lenA = getLen(headA),
     lenB = getLen(headB);
-  // 确保A是长的链方便计算
   if (lenA < lenB) {
-    [curA, curB] = [curB, curA];
     [lenA, lenB] = [lenB, lenA];
+    [curA, curB] = [curB, curA];
   }
-
   let diff = lenA - lenB;
-  // 移动到差值位，末尾对齐
   while (diff > 0) {
-    diff--;
     curA = curA.next;
+    diff--;
   }
   while (curA && curA !== curB) {
     curA = curA.next;
     curB = curB.next;
   }
-
   return curA;
 };
 
