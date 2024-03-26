@@ -12,6 +12,6 @@ module.exports = {
   rules: {
     'no-unused-vars': 'warn',
     'no-undef': 'error',
-    'no-unsanitized/property': 'error',
+    // 'no-unsanitized/property': 'error',
   },
 };

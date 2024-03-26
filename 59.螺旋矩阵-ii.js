@@ -24,15 +24,15 @@ var generateMatrix = function (n) {
     loop--;
     let row = startX,
       col = startY;
-    // 横向 从左到右
-    while (n - col > offset) {
+    // 横向 从左到右 col < n - offset 应该更好理解
+    while (col < n - offset) {
       res[row][col] = count;
       count++;
       col++;
     }
 
     // 纵向 从上到下
-    while (n - row > offset) {
+    while (row < n - offset) {
       res[row][col] = count;
       row++;
       count++;
