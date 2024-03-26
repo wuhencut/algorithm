@@ -19,13 +19,13 @@
 var reverseList = function (head) {
   if (!head || !head.next) return head;
   let pred = null,
-    temp,
+    next,
     cur = head;
   while (cur) {
-    temp = cur.next;
+    next = cur.next;
     cur.next = pred;
     pred = cur;
-    cur = temp;
+    cur = next;
   }
   return pred;
 };
